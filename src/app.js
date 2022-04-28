@@ -18,7 +18,7 @@ const app = async (yargsObj) => {
         }else if (yargsObj.list) {
             console.log(await listMovie());
         }else if (yargsObj.update) {
-            await updateMovie({title: yargsObj.title}, yargsObj.newTitle);
+            await updateMovie({title:yargsObj.title, newTitle: yargsObj.newTitle});
         }else if (yargsObj.delete) {
             await deleteMovie({title: yargsObj.title})
         }else {

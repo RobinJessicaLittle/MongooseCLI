@@ -9,6 +9,12 @@ const movieSchema = new mongoose.Schema({
         unique: true,
         Capitalisation:true, 
     },
+    newTitle: {
+        type: String,
+        type: String,
+        default: 'Not specified',
+        Capitalisation: true, 
+    },
     actor: {
         type: String,
         default: 'Not specified',

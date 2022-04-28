@@ -27,15 +27,19 @@ exports.deleteMovie = async (movieObj) => {
     }
 }
 
-exports.updateMovie = async (title, newTitle) => {
+exports.updateMovie = async (movieObj) => {
     try{
-        let updateList = await collection.updateOne(title, {$set : {title: newTitle}} )
+        console.log("Movie Updated")
+        let updateList = await updateOne(
+            {title: movieObj.title},
+            {newTitle: movieObj.newTitle}
+        );
         console.log(updateList)
     } catch (error) {
-        console.log("update Movie fail")
+        console.log("updateMovies fail")
     }
 }
 
-
+//const res = await Person.updateOne({ name: 'Jean-Luc Picard' }, { ship: 'USS Enterprise' });
 
 
