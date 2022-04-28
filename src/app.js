@@ -7,7 +7,7 @@
 require('./db/connection');
 const { default: mongoose } = require('mongoose');
 const yargs = require('yargs');
-const {addMovie, listMovie, deleteMovie} = require ('./movie/methods')
+const {addMovie, listMovie, deleteMovie, updateMovie} = require ('./movie/methods')
 
 const app = async (yargsObj) => {
     try{
@@ -18,7 +18,7 @@ const app = async (yargsObj) => {
         }else if (yargsObj.list) {
             console.log(await listMovie());
         }else if (yargsObj.update) {
-            //update movies with filterObj and updateObj
+            await updateMovie({title: yargsObj.title}, yargsObj.newTitle);
         }else if (yargsObj.delete) {
             await deleteMovie({title: yargsObj.title})
         }else {
@@ -35,6 +35,7 @@ const app = async (yargsObj) => {
 
 app(yargs.argv);
 
-//node src/app.js --add --title='Mrs Doubtfire' --actor='Robin Williams' WORKING
+//node src/app.js --add --title='102 Dalmations' --actor='Glen Close' WORKING
 //node src/app.js --list WORKING
-//node src/app.js --add --title='Mrs Doubtfire' --actor='Robin Williams' SAYS WORKING BUT DOES NOT
+//node src/app.js --delete --title='Mrs Doubtfire' --actor='Robin Williams' WORKING 
+//node src/app.js --update --title="102 Dalmations" --newTitle="101 Dalmations" NOT WORKING

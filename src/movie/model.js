@@ -18,7 +18,7 @@ const movieSchema = new mongoose.Schema({
     //     type: Number,
     // }
     //Below adds a new object of series
-    // series: mongoose.ShemaTypes.ObjectID,
+    // series: mongoose.SchemaTypes.ObjectID,
     // name: { 
     //     type: String,
     //     required: true,
