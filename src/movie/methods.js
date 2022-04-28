@@ -16,3 +16,14 @@ exports.listMovie = async () => {
     }
 }
 
+exports.deleteMovie = async (movieObj) => {
+    console.log(movieObj);
+    try {
+        await Movie.deleteOne({movieObj});
+        // keyname: parameter
+        console.log("Successfully deleted");
+    } catch (error) {
+        console.log(error)
+    }
+}
+
