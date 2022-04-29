@@ -41,6 +41,7 @@ exports.updateMovie = async ( oldEntry, newEntry, entryType ) => {
             return `The ${entryType} of ${oldEntry} updated to ${newEntry}`;
         }
     } catch (error) {
+        console.log("updateMovies fail")
         console.log(error);
     }
 };
