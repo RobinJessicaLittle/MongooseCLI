@@ -18,7 +18,7 @@ const app = async (yargsObj) => {
         }else if (yargsObj.list) {
             console.log(await listMovie());
         }else if (yargsObj.update) {
-            await updateMovie({title:yargsObj.title, newTitle: yargsObj.newTitle});
+            console.log(await updateMovie(yargsObj.oldEntry, yargsObj.newEntry, yargsObj.entryType));;
         }else if (yargsObj.delete) {
             await deleteMovie({title: yargsObj.title})
         }else {
@@ -38,4 +38,4 @@ app(yargs.argv);
 //node src/app.js --add --title='102 Dalmations' --actor='Glen Close' WORKING
 //node src/app.js --list WORKING
 //node src/app.js --delete --title='Mrs Doubtfire' --actor='Robin Williams' WORKING 
-//node src/app.js --update --title="102 Dalmations" --newTitle="101 Dalmations" NOT WORKING
+//node src/app.js --update --entryType="title" --oldEntry="102 Dalmations" --newInfo="101 Dalmations" NOT WORKING
