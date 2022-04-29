@@ -23,8 +23,8 @@ const app = async (yargsObj) => {
             console.log(await updateMovie(yargsObj.oldEntry, yargsObj.newEntry));
 
         }else if (yargsObj.find) {
-            await findTitle({title: yargsObj.title})
-            await findActor({actor: yargsObj.actor})
+            console.log (await findTitle({title: yargsObj.title}))
+            console.log(await findActor({actor: yargsObj.actor}))
 
         }else if (yargsObj.delete) {
             await deleteMovie({title: yargsObj.title})
@@ -46,5 +46,4 @@ app(yargs.argv);
 //node src/app.js --list WORKING
 //node src/app.js --delete --title='Mrs Doubtfire' --actor='Robin Williams' WORKING 
 //node src/app.js --update --entryType="actor" --oldEntry="Tom Holland" --newEntry="Toby Maguire" WORKING
-//node src/app.js --findTitle --title='The Titanic' NOT WORKING
-//node src/app.js --findActor --actor='The Titanic' NOT WORKING
+//node src/app.js --find --title='The Titanic' WORKING

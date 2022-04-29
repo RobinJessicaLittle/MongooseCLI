@@ -45,7 +45,6 @@ exports.updateMovie = async ( oldEntry, newEntry, entryType ) => {
     }
 };
 
-//NOT WORKING
 
 exports.findTitle = async (movieObj) => {
     try{
