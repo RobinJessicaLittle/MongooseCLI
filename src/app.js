@@ -7,7 +7,7 @@
 require('./db/connection');
 const { default: mongoose } = require('mongoose');
 const yargs = require('yargs');
-const {addMovie, listMovie, deleteMovie, updateMovie} = require ('./movie/methods')
+const {addMovie, listMovie, deleteMovie, updateMovie, findTitle, findActor} = require ('./movie/methods')
 
 const app = async (yargsObj) => {
     try{
@@ -15,10 +15,17 @@ const app = async (yargsObj) => {
             //add movie function that takes yargsObj terminal input
             await addMovie({title: yargsObj.title, actor: yargsObj.actor});
             console.log(`Successfully added ${yargsObj.title}`)
+
         }else if (yargsObj.list) {
             console.log(await listMovie());
+
         }else if (yargsObj.update) {
-            console.log(await updateMovie(yargsObj.oldEntry, yargsObj.newEntry, yargsObj.entryType));;
+            console.log(await updateMovie(yargsObj.oldEntry, yargsObj.newEntry));
+
+        }else if (yargsObj.find) {
+            await findTitle({title: yargsObj.title})
+            await findActor({actor: yargsObj.actor})
+
         }else if (yargsObj.delete) {
             await deleteMovie({title: yargsObj.title})
         }else {
@@ -27,15 +34,17 @@ const app = async (yargsObj) => {
         await mongoose.disconnect()
     }catch (error) {
         console.log(error);
-        //this ensures that terminal is refreshed after every entry, can put this after all console logs or returns
-        await mongoose.disconnect()
+        
+        await mongoose.disconnect() //this ensures that terminal is refreshed after every entry, can put this after all console logs or returns
     }
 
 };
 
 app(yargs.argv);
 
-//node src/app.js --add --title='102 Dalmations' --actor='Glen Close' WORKING
+//node src/app.js --add --title='The Titanic' --actor='Leonardo Decaprio' WORKING
 //node src/app.js --list WORKING
 //node src/app.js --delete --title='Mrs Doubtfire' --actor='Robin Williams' WORKING 
-//node src/app.js --update --entryType="title" --oldEntry="102 Dalmations" --newInfo="101 Dalmations" NOT WORKING
+//node src/app.js --update --entryType="actor" --oldEntry="Tom Holland" --newEntry="Toby Maguire" WORKING
+//node src/app.js --findTitle --title='The Titanic' NOT WORKING
+//node src/app.js --findActor --actor='The Titanic' NOT WORKING

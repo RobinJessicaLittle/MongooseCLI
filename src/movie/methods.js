@@ -20,7 +20,6 @@ exports.deleteMovie = async (movieObj) => {
     console.log(movieObj);
     try {
         await Movie.deleteOne({movieObj});
-        // keyname: parameter
         console.log("Successfully deleted");
     } catch (error) {
         console.log(error)
@@ -40,30 +39,26 @@ exports.updateMovie = async ( oldEntry, newEntry, entryType ) => {
                 { actor: newEntry }
             );
             return `The ${entryType} of ${oldEntry} updated to ${newEntry}`;
-        } else if (info == "date") {
-            await Movie.updateOne(
-                { date: oldEntry },
-                { date: newEntry }
-            );
-            return `Updated movie ${entryType} - ${oldEntry} to ${newEntry}`;
         }
     } catch (error) {
         console.log(error);
     }
 };
-// exports.updateMovie = async (movieObj) => {
-//     try{
-//         console.log("Movie Updated")
-//         let updateList = await updateOne(
-//             {title: movieObj.title},
-//             {newTitle: movieObj.newTitle}
-//         );
-//         console.log(updateList)
-//     } catch (error) {
-//         console.log("updateMovies fail")
-//     }
-// }
 
+//NOT WORKING
 
+exports.findTitle = async (movieObj) => {
+    try{
+        return await Movie.find({title:movieObj.title})
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-
+exports.findActor = async (movieObj) => {
+    try{
+        return await Movie.find({actor:movieObj.actor})
+    } catch (error) {
+        console.log(error)
+    }
+}
